@@ -32,7 +32,7 @@ public class BList implements BEncode<List<? extends BEncode<?> >> {
 		char c;
 		while ((c = (char) in.read()) != -1) {
 			if (c == 'i') {
-				this.value.add(new BInt(in));
+				this.value.add(new BLong(in));
 			} else if (c == 'l') {
 				this.value.add(new BList(in));
 			} else if (c == 'd') {

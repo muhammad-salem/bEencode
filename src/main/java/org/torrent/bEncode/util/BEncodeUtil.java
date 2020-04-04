@@ -3,6 +3,8 @@ package org.torrent.bEncode.util;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,13 +41,37 @@ public final class BEncodeUtil {
 		return readInt(in, new ArrayList<>());
 	}
 	
+	public static Long readLong(InputStream in) throws IOException {
+		return readLong(in, new ArrayList<>());
+	}
+	
+	public static Number readNumber(InputStream in) throws IOException, ParseException {
+		return readNumber(in, new ArrayList<>());
+	}
+	
 	public static Integer readLength(char firstChar, InputStream in) throws IOException {
 		ArrayList<Character> list = new ArrayList<>();
 		list.add(firstChar);
 		return readInt(in, list);
 	}
 
+
+	
 	static Integer readInt(InputStream in, List<Character> list) throws IOException {
+		return Integer.valueOf(readIntString(in, list));
+	}
+	
+	static Long readLong(InputStream in, List<Character> list) throws IOException {
+		return Long.valueOf(readIntString(in, list));
+	}
+	
+	static Number readNumber(InputStream in, List<Character> list) throws IOException, ParseException {
+		return NumberFormat.getInstance().parse(readIntString(in, list));
+	}
+	
+	
+	
+	static String readIntString(InputStream in, List<Character> list) throws IOException {
 		int c;
 		do {
 			c = in.read();
@@ -60,7 +86,7 @@ public final class BEncodeUtil {
 		for(int i = 0; i < cs.length; i++) {
 		    cs[i] = list.get(i);
 		}
-		return Integer.valueOf(new String(cs));
+		return new String(cs);
 	}
 	
 	

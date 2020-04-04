@@ -17,8 +17,8 @@ public class TorrentFileTest {
 		InputStream in = getClass().getResourceAsStream("/ubuntu-19.10-desktop-amd64.iso.torrent");
 		BEncodeReader<BMap> torrent = new BEncodeReader<BMap>(in);
 		String pieces = (String) torrent.searchValue("info.pieces").value();
-		int pieceLength = (int) torrent.searchValue("info.piece length").value();
-		int length = (int) torrent.searchValue("info.length").value();
+		long pieceLength = (long) torrent.searchValue("info.piece length").value();
+		long length = (long) torrent.searchValue("info.length").value();
 		System.out.printf("pieces: %d,\tbytes: %d,\t length: %d\n", pieces.length(), pieces.getBytes("UTF-8").length , length);
 		
 		System.out.println("length: " + length);
