@@ -42,7 +42,7 @@ public class BMap implements BEncode<Map<BEncode<String> , BEncode<?> >> {
 //			key = new StringValue(in);
 			c = (char) in.read();
 			if (c == 'i') {
-				valueForKey = new BInt(in);
+				valueForKey = new BLong(in);
 			} else if (c == 'l') {
 				valueForKey = new BList(in);
 			} else if (c == 'd') {
