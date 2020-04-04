@@ -1,10 +1,10 @@
-package org.udp.torrent.vlaue;
+package org.torrent.bEncode.vlaue;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 
-import org.udp.torrent.util.BEncodeUtil;
+import org.torrent.bEncode.util.BEncodeUtil;
 
 public abstract class BEArray<T> implements BEncode<T[]> {
 	

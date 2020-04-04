@@ -1,4 +1,4 @@
-package org.udp.torrent.util;
+package org.torrent.bEncode.util;
 
 public class SHA1 {
     private final int[] abcde = {

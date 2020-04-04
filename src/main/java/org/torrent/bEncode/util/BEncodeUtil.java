@@ -1,4 +1,4 @@
-package org.udp.torrent.util;
+package org.torrent.bEncode.util;
 
 import java.io.IOException;
 import java.io.InputStream;

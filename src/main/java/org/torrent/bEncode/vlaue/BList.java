@@ -1,4 +1,4 @@
-package org.udp.torrent.vlaue;
+package org.torrent.bEncode.vlaue;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

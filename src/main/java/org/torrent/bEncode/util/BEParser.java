@@ -1,4 +1,4 @@
-package org.udp.torrent.util;
+package org.torrent.bEncode.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
-import org.udp.torrent.vlaue.BEncode;
-import org.udp.torrent.vlaue.BInt;
-import org.udp.torrent.vlaue.BList;
-import org.udp.torrent.vlaue.BMap;
-import org.udp.torrent.vlaue.BString;
+import org.torrent.bEncode.vlaue.BEncode;
+import org.torrent.bEncode.vlaue.BInt;
+import org.torrent.bEncode.vlaue.BList;
+import org.torrent.bEncode.vlaue.BMap;
+import org.torrent.bEncode.vlaue.BString;
 
 public final class BEParser {
 	private BEParser() {}

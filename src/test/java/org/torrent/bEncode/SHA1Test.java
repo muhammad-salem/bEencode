@@ -1,7 +1,7 @@
-package org.udp.torrent;
+package org.torrent.bEncode;
 
 import org.junit.Test;
-import org.udp.torrent.util.SHA1;
+import org.torrent.bEncode.util.SHA1;
 
 public class SHA1Test {
 

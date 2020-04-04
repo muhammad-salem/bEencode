@@ -1,4 +1,4 @@
-package org.udp.torrent;
+package org.torrent.bEncode;
 
 
 import java.io.ByteArrayInputStream;
@@ -6,11 +6,11 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Test;
-import org.udp.torrent.vlaue.BMap;
-import org.udp.torrent.util.BEncodeUtil;
-import org.udp.torrent.vlaue.BInt;
-import org.udp.torrent.vlaue.BList;
-import org.udp.torrent.vlaue.BString;
+import org.torrent.bEncode.vlaue.BInt;
+import org.torrent.bEncode.vlaue.BList;
+import org.torrent.bEncode.vlaue.BMap;
+import org.torrent.bEncode.vlaue.BString;
+import org.torrent.bEncode.util.BEncodeUtil;
 
 public class AppTest {
 
@@ -66,24 +66,6 @@ public class AppTest {
 		in.reset();
 		System.out.println(BEncodeUtil.readInt(in));
 	}
-	
-//	@Test
-//	public void test2() {
-//		InputStream in = new ByteArrayInputStream("i-3e:i44:i345623e".getBytes());
-//		IntListValue intListValue = new IntListValue(in);
-//		System.out.println(intListValue.value());
-//		
-//		in.reset();
-//		IntegerListValue integerListValue = new IntegerListValue(in);
-//		System.out.println(integerListValue.value());
-//		System.out.println(integerListValue.toString());
-//		integerListValue
-//					.value()
-//					.stream()
-//					.map(BValue::value)
-//					.forEach(System.out::println);
-//					   [ 87,  admed,[ -8, jhgfdsaqw
-//	}
 	
 	
 

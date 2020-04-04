@@ -1,9 +1,9 @@
-package org.udp.torrent.vlaue;
+package org.torrent.bEncode.vlaue;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import org.udp.torrent.util.BEncodeUtil;
+import org.torrent.bEncode.util.BEncodeUtil;
 
 public class BECharArray implements BEncode<char[]> {
 	

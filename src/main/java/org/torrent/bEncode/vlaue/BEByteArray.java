@@ -1,11 +1,11 @@
-package org.udp.torrent.vlaue;
+package org.torrent.bEncode.vlaue;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
-import org.udp.torrent.util.BEncodeUtil;
+import org.torrent.bEncode.util.BEncodeUtil;
 
 public class BEByteArray implements BEncode<byte[]> {
 	

@@ -1,4 +1,4 @@
-package org.udp.torrent;
+package org.torrent.bEncode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
-import org.udp.torrent.util.BEParser;
-import org.udp.torrent.vlaue.BList;
-import org.udp.torrent.vlaue.BMap;
+import org.torrent.bEncode.util.BEParser;
+import org.torrent.bEncode.vlaue.BList;
+import org.torrent.bEncode.vlaue.BMap;
 
 public class BEParserTest {
 	

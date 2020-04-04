@@ -1,15 +1,15 @@
-package org.udp.torrent;
+package org.torrent.bEncode;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
 
-import org.udp.torrent.vlaue.BEncode;
-import org.udp.torrent.vlaue.BMap;
-import org.udp.torrent.vlaue.BInt;
-import org.udp.torrent.vlaue.BList;
-import org.udp.torrent.vlaue.BString;
+import org.torrent.bEncode.vlaue.BEncode;
+import org.torrent.bEncode.vlaue.BInt;
+import org.torrent.bEncode.vlaue.BList;
+import org.torrent.bEncode.vlaue.BMap;
+import org.torrent.bEncode.vlaue.BString;
 
 public class BEncodeReader<T extends BEncode<?>> implements BEncode<T>{
 	
