@@ -17,11 +17,11 @@ public class BEncoderTest {
 		
 //		BEncoder<?> bEncoder = new BEncoder<>(in);
 //		System.out.println(bEncoder.value());
-		BEncodeReader<BMap> value = new BEncodeReader<BMap>(in);
+		BMap value = BEncodeReader.parse(in).asBMap();
 //		System.out.println(value);
-		BMap info = (BMap)value.searchValue("info");
-		info.streamKey().forEach(System.out::println);
-		String pieces = (String) info.search("pieces").get().value();
+		BMap info = value.asBMap().search("info").asBMap();
+		info.keyStream().forEach(System.out::println);
+		String pieces = (String) info.search("pieces").value();
 		System.out.println(pieces);
 		
 //		System.out.println(value.searchValue("info.piece length").value());

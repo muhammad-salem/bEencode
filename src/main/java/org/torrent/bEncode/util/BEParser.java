@@ -8,7 +8,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import org.torrent.bEncode.vlaue.BEncode;
-import org.torrent.bEncode.vlaue.BInt;
+import org.torrent.bEncode.vlaue.BInteger;
 import org.torrent.bEncode.vlaue.BList;
 import org.torrent.bEncode.vlaue.BMap;
 import org.torrent.bEncode.vlaue.BString;
@@ -77,7 +77,7 @@ public final class BEParser {
 					result.put(new BString(key), parse((List<?>) value));
 				}
 				else if (value instanceof Integer) {
-					result.put(new BString(key), new BInt((Integer) value));
+					result.put(new BString(key), new BInteger((Integer) value));
 				}
 				else if (value instanceof String) {
 					result.put(new BString(key), new BString((String) value));
@@ -103,7 +103,7 @@ public final class BEParser {
 					result.add(parse((List<?>) value));
 				}
 				else if (value instanceof Integer) {
-					result.add(new BInt((Integer) value));
+					result.add(new BInteger((Integer) value));
 				}
 				else if (value instanceof String) {
 					result.add(new BString((String) value));

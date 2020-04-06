@@ -3,18 +3,15 @@ package org.torrent.bEncode.vlaue;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.function.Predicate;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
 
-public class BMap implements BEncode<Map<BEncode<String> , BEncode<?> >> {
+public class BMap implements BEncode.BEncodeMap {
 	
 	private Map<BEncode<String> , BEncode<?>> value;
 	
@@ -22,18 +19,15 @@ public class BMap implements BEncode<Map<BEncode<String> , BEncode<?> >> {
 		this.value = value;
 	}
 	
-	public BMap(String bEncode) throws IOException {
-		this(bEncode.getBytes(StandardCharsets.UTF_8));
+	public BMap(byte[] bytes) throws IOException {
+		this(new ByteArrayInputStream(bytes));
 	}
-	public BMap(byte[] buf) throws IOException {
-		this(new ByteArrayInputStream(buf));
-	}
+
 	public BMap(InputStream in) throws IOException {
 		this.value = new HashMap<>();
 		initDictionary(in);
 	}
 	
-
 	private void initDictionary(InputStream in) throws IOException {
 		char c;
 		BEncode<String> key = null;
@@ -72,55 +66,32 @@ public class BMap implements BEncode<Map<BEncode<String> , BEncode<?> >> {
 		} while (true);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public Map<BEncode<String> ,BEncode<?>> value() {
+	public BEncode<?> get(Object index) {
+		if (index instanceof BEncode) {
+			return get((BEncode<String>)index);
+		}
+		else if(index instanceof String) {
+			Optional<BEncode<String>> optional =  value.keySet().stream().filter(new Predicate<BEncode<String>>() {
+
+				@Override
+				public boolean test(BEncode<String> bEncode) {
+					return bEncode.value().equals(index) ;
+				}
+			}).findFirst();
+			if (optional.isEmpty()) {
+				return null;
+			}
+			BEncode<String> key = optional.get();
+			return value.get(key);
+		}
+		return value.get(index);
+	}
+
+	@Override
+	public Map<BEncode<String>, BEncode<?>> value() {
 		return value;
-	}
-	
-	public BEncode<?> getKey(String key) {
-		return value.entrySet()
-				.stream()
-				.filter(e -> key.equals(e.getKey().value()))
-				.findAny()
-				.get()
-				.getValue();
-	}
-	
-	public Optional<BEncode<?>> search(String keyName) {
-		Map<BEncode<String>, BEncode<?>> map = value;
-		return map.keySet().stream().filter(new Predicate<BEncode<String>>() {
-			@Override
-			public boolean test(BEncode<String> key) {
-				return key.value().equals(keyName);
-			}
-		}).map(new Function<BEncode<String>, BEncode<?>>() {
-			@Override
-			public BEncode<?> apply(BEncode<String> key) {
-				return map.get(key);
-			}
-		}).findAny();
-	}
-	
-	
-	public Stream<String> streamKey() {
-		return value.keySet().stream().map(BEncode::value);
-	}
-	
-	public Stream<String> streamBEncodeKey() {
-		return value.keySet().stream().map(BEncode::bEncode);
-	}
-	
-	
-	@Override
-	public String bEncode() {
-		StringBuilder builder  = new StringBuilder();
-		builder.append('d');
-		value.forEach((k, v) -> {
-			builder.append(k.bEncode());
-			builder.append(v.bEncode());
-		});
-		builder.append('e');
-		return builder.toString();
 	}
 	
 	@Override
@@ -143,6 +114,5 @@ public class BMap implements BEncode<Map<BEncode<String> , BEncode<?> >> {
             sb.append(',').append(' ');
         }
 	}
-	
 	
 }

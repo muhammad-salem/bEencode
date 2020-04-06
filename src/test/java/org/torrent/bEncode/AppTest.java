@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.junit.Test;
-import org.torrent.bEncode.vlaue.BInt;
+import org.torrent.bEncode.vlaue.BInteger;
 import org.torrent.bEncode.vlaue.BList;
 import org.torrent.bEncode.vlaue.BMap;
 import org.torrent.bEncode.vlaue.BString;
@@ -25,8 +25,8 @@ public class AppTest {
 		System.out.println(dictionaryValue);
 		System.out.println(dictionaryValue.value());
 		System.out.println(dictionaryValue.bEncode());
-		dictionaryValue.streamKey().forEach(System.out::println);
-		dictionaryValue.streamBEncodeKey().forEach(System.out::println);
+		dictionaryValue.keyStream().forEach(System.out::println);
+		dictionaryValue.keyBencodeStream().forEach(System.out::println);
 	}
 	
 	
@@ -40,13 +40,13 @@ public class AppTest {
 		System.out.println(list);
 		System.out.println(listValue.bEncode());
 		System.out.println(listValue.value());
-		listValue.streamString().forEach(System.out::println);
+		listValue.asStringStream().forEach(System.out::println);
 	}
 	
 	@Test
 	public void test1() throws IOException {
 		InputStream in = new ByteArrayInputStream("spam".getBytes());
-		BString stringValue = new BString(4, in);
+		BString stringValue = new BString(in, 4);
 		System.out.println(stringValue.value());
 		
 		in = new ByteArrayInputStream("4:abcd".getBytes());
@@ -56,12 +56,12 @@ public class AppTest {
 		System.out.println(BEncodeUtil.readString(in));
 		
 		in = new ByteArrayInputStream("-3e".getBytes());
-		BInt intValue = new BInt(in);
+		BInteger intValue = new BInteger(in);
 		System.out.println(intValue);
 
 		// error 000
 		in = new ByteArrayInputStream("i00084e".getBytes());
-		intValue = new BInt(in);
+		intValue = new BInteger(in);
 		System.out.println(intValue.value());
 		in.reset();
 		System.out.println(BEncodeUtil.readInt(in));

@@ -46,8 +46,8 @@ public class BEByteArray implements BEncode<byte[]> {
 		return new BString(new ByteArrayInputStream(value));
 	}
 	
-	public BInt asInt() throws IOException{
-		return new BInt(new ByteArrayInputStream(value));
+	public BInteger asInt() throws IOException{
+		return new BInteger(new ByteArrayInputStream(value));
 	}
 	
 
