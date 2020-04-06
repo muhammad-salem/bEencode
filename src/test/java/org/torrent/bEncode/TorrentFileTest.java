@@ -1,6 +1,5 @@
 package org.torrent.bEncode;
 
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.NoSuchAlgorithmException;
@@ -31,7 +30,9 @@ public class TorrentFileTest {
 //		String sha1String = new String(sha1, "UTF8");
 //		System.out.printf("sha1:\t%s,\tlength: %d\n", sha1String, sha1String.length());
 
-		BString bString = new BString(new ByteArrayInputStream(pieces.getBytes()), 20);
+		BString pi = torrent.search("info.pieces").asBString();
+//		System.out.println("pi: " + pi);
+		BString bString = new BString(pi.getBytes(), 0, 20);
 		System.out.println("bString: " + bString);
 		in.close();
 	}

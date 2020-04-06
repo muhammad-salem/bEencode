@@ -24,6 +24,11 @@ public class BLong implements BEncode.BEncodeLong {
 		this.bytes = bytes;
 	}
 	
+	public BLong(byte[] srcBytes,  int srcPos, int length) {
+		this.bytes = new byte[length];
+		System.arraycopy(srcBytes, srcPos, this.bytes, 0, length);
+	}
+	
 	@Override
 	public byte[] getBytes() {
 		if (Objects.isNull(bytes)) {

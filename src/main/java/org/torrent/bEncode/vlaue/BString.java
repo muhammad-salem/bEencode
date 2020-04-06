@@ -37,6 +37,11 @@ public class BString implements BEncode.BEncodeString {
 		this.bytes = bytes;
 	}
 	
+	public BString(byte[] srcBytes,  int srcPos, int length) {
+		this.bytes = new byte[length];
+		System.arraycopy(srcBytes, srcPos, this.bytes, 0, length);
+	}
+	
 
 	@Override
 	public byte[] getBytes() {
@@ -60,7 +65,7 @@ public class BString implements BEncode.BEncodeString {
 	
 	@Override
 	public String toString() {
-		return '\'' + value + '\'';
+		return '\'' + value() + '\'';
 	}
 	
 	

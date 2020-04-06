@@ -26,6 +26,11 @@ public class BNumber implements BEncode.BEncodeNumber {
 		this.bytes = bytes;
 	}
 	
+	public BNumber(byte[] srcBytes,  int srcPos, int length) {
+		this.bytes = new byte[length];
+		System.arraycopy(srcBytes, srcPos, this.bytes, 0, length);
+	}
+	
 	@Override
 	public byte[] getBytes() {
 		if (Objects.isNull(bytes)) {
