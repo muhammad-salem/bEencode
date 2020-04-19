@@ -80,13 +80,15 @@ public class BMap implements BEncode.BEncodeMap {
 					return bEncode.value().equals(index) ;
 				}
 			}).findFirst();
-			if (optional.isEmpty()) {
+			if (optional.isPresent()) {
+				BEncode<String> key = optional.get();
+				return value.get(key);
+			} else {
 				return null;
-			}
-			BEncode<String> key = optional.get();
-			return value.get(key);
+			}	
+		} else {
+			return value.get(index);
 		}
-		return value.get(index);
 	}
 
 	@Override
